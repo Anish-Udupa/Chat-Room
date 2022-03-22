@@ -125,6 +125,7 @@ void interact(int new_socket, char *usr){
                 //printf("Writing message to file.\n");
                 //printf("To: %s\n", to);
                 //printf("Msg: %s\n", msg);
+
                 fprintf(msg_fp, "%s,%s,%s\n", usr, to, msg);
                 write(new_socket, "Message successfully written.\n", 31);
                 fclose(msg_fp);
@@ -169,6 +170,7 @@ void interact(int new_socket, char *usr){
                 write(new_socket, "Displaying outbox:\n", 20);
                 write(new_socket, "From\t To\t Message\n", 19);
                 //write(new_socket, "------------------\n", 19);
+
                 while(getline(&line, &len, disp_fp) != -1){
                     // printf("Line: %s", line);
                     char *from = strtok(line, ",");
@@ -225,6 +227,7 @@ void * connection_handler(void *socket_desc){
         printf("User %s has logged out.\n", usr);
         close(new_socket);
         free(socket_desc);
+
 }
 
 int main(){
@@ -273,6 +276,7 @@ int main(){
         
         //printf("Connection accepted.\n");
         
+
     }
 
     if(new_socket < 0){
