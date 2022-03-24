@@ -106,7 +106,21 @@ void interact(int new_socket, char *usr){
         // Define operations
         if(strcmp(op, "help") == 0){
             // Help command
-            write(new_socket, "Help command\n", 14);
+            FILE * disp_help = fopen("help.csv","r");
+                char *line = NULL;
+                size_t len = 0;
+                while(getline(&line, &len, disp_help) != -1){
+
+                    char *command = strtok(line, ",");
+                    char *usage = strtok(NULL, ",");
+                    char *description = strtok(NULL, "\n");  // Gets the rest of the message
+                    char outputString[INP_BUF_SIZE];
+
+                    sprintf(outputString, "%s\t %s\t %s\n", command, usage, description);
+                    write(new_socket, outputString, strlen(outputString) + 1);
+                   
+                }
+                fclose(disp_help);
         }
         else if(strcmp(op, "quit") == 0){
             // Quit command
