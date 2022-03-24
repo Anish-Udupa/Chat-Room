@@ -1,0 +1,8 @@
+Command,	Usage,				Description
+-------,	------,				------------
+help,	help,			 Displays all the available commands
+msg,	msg {to} [your_message_here],Sends the message to the mentioned user
+inbox,	inbox,			 Displays the received message for the current user
+outbox,	outbox,			 Displays the sent message from the current user
+clear,	clear,			 Clears the message history
+quit,	quit,			 Closing the connection from the server
